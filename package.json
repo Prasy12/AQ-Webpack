@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "lint": "eslint ./",
     "lint-fix": "eslint ./ --fix",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
@@ -28,6 +28,8 @@
     "@babel/plugin-transform-runtime": "^7.17.0",
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "^7.16.7",
+    "@testing-library/react": "^12.1.4",
+    "babel-jest": "^27.5.1",
     "babel-loader": "^8.2.3",
     "css-loader": "^6.7.1",
     "dotenv-webpack": "^7.1.0",
@@ -45,9 +47,11 @@
     "html-webpack-plugin": "^5.5.0",
     "husky": "^7.0.4",
     "image-webpack-loader": "^8.1.0",
+    "jest": "^27.5.1",
     "lint-staged": "^12.3.5",
     "mini-css-extract-plugin": "^2.6.0",
     "prettier": "^2.5.1",
+    "react-test-renderer": "^17.0.2",
     "rimraf": "^3.0.2",
     "sass-loader": "^12.6.0",
     "style-loader": "^3.3.1",
@@ -61,7 +65,7 @@
     }
   },
   "lint-staged": {
-    "*.js": "eslint --fix",
+    "*.js": "eslint",
     "*.{js,css,md}": "prettier --write"
   }
 }
