@@ -12,7 +12,8 @@
     "dev": "rimraf build",
     "prodBuild": "env-cmd -f .env.production  yarn run prod && webpack --config=./config/webpack.prod.js",
     "devBuild": "env-cmd -f .env.development  yarn run dev && webpack --config=./config/webpack.dev.js",
-    "start": "env-cmd -f .env.local  webpack-dev-server --history-api-fallback --config=./config/webpack.config.js --open"
+    "start": "env-cmd -f .env.local  webpack-dev-server --history-api-fallback --config=./config/webpack.config.js --open",
+    "prepare": "husky install"
   },
   "keywords": [],
   "author": "PsiogDigtal",
@@ -42,7 +43,9 @@
     "file-loader": "^6.2.0",
     "html-loader": "^3.1.0",
     "html-webpack-plugin": "^5.5.0",
+    "husky": "^7.0.4",
     "image-webpack-loader": "^8.1.0",
+    "lint-staged": "^12.3.5",
     "mini-css-extract-plugin": "^2.6.0",
     "prettier": "^2.5.1",
     "rimraf": "^3.0.2",
@@ -51,5 +54,14 @@
     "webpack": "^5.70.0",
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.7.4"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": "eslint --fix",
+    "*.{js,css,md}": "prettier --write"
   }
 }

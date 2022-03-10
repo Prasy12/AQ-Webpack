@@ -19,5 +19,61 @@
         "react"
     ],
     "rules": {
+        "prefer-destructuring": "off",
+		"jsx-a11y/no-autofocus": "off",
+		"dot-notation": "off",
+		"no-useless-escape": "off",
+		"no-param-reassign": "off",
+		"no-unused-vars": "off",
+		"no-underscore-dangle": "off",
+		"no-nested-ternary": "off",
+		"no-lonely-if": "off",
+		"no-return-await": "off",
+		"react/no-did-update-set-state": "off",
+		// first argument: 0 - silent, 1 - warning, 2 - error
+		"strict": [2, "safe"],
+		"no-debugger": 2,
+		"brace-style": [
+			2,
+			"1tbs",
+			{
+				"allowSingleLine": true
+			}
+		],
+		"no-trailing-spaces": 2,
+		"keyword-spacing": 2,
+		"import/no-unused-modules": [
+			1,
+			{
+				"unusedExports": true
+			}
+		],
+		"spaced-comment": [2, "always"],
+		"vars-on-top": 2,
+		"no-undef": 2,
+		"no-undefined": 2,
+		"comma-dangle": [2, "never"],
+		"quotes": [1, "single"],
+		"semi": [2, "always"],
+		"guard-for-in": 2,
+		"no-eval": 2,
+		"no-with": 2,
+		"valid-typeof": 2,
+		"no-continue": 1,
+		"no-extra-semi": 1,
+		"no-unreachable": 1,
+		"no-unused-expressions": 1,
+		"no-magic-numbers": 0,
+		"max-len": [1, 120, 4],
+		"react/prefer-es6-class": 1,
+        "import/no-extraneous-dependencies": "off",
+        "import/no-unresolved": "error",
+        "no-console": "off",
+        "react/jsx-filename-extension": [
+			"error",
+			{
+				"extensions": [".js", ".jsx"]
+			}
+		]
     }
 }
