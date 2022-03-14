@@ -65,12 +65,16 @@ const CovalentText = styled.div`
 function Info() {
 	return (
 		<div>
-			<Logo src="https://media-exp1.licdn.com/dms/image/C4E0BAQFazUUEA1n9rw/company-logo_200_200/0/1619630150259?e=2147483647&v=beta&t=BheIcPOPe-h4tPAYiUurh7137oXzAhsidqfKHOooWlg" />
+			<Logo
+				data-testid="Logo"
+				alt="Logo"
+				src="https://media-exp1.licdn.com/dms/image/C4E0BAQFazUUEA1n9rw/company-logo_200_200/0/1619630150259?e=2147483647&v=beta&t=BheIcPOPe-h4tPAYiUurh7137oXzAhsidqfKHOooWlg"
+			/>
 			<Button>LOGIN</Button>
 			<Header left="1124px">Careers</Header>
 			<Header left="1035px">About</Header>
 			<Header left="960px">Blog</Header>
-			<Header left="856px">Product</Header>
+			<Header left="856px">Solid</Header>
 			{/* <BetaText>
                 Beta
             </BetaText>

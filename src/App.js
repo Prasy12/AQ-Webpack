@@ -1,14 +1,14 @@
 import React from 'react';
-import Info from './containers/Info';
-import Descripton from './containers/Description';
+import Info from './containers/homePage/info';
+import Description from './containers/homePage/description';
 
 function App() {
-	console.log('ENV', `${process.env.REACT_APP_ENDPOINT_URL}`);
+	console.log('ENVs', `${process.env.REACT_APP_ENDPOINT_URL}`);
 	return (
-		<fragment>
+		<>
 			<Info />
-			<Descripton />
-		</fragment>
+			<Description />
+		</>
 	);
 }
 

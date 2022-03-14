@@ -82,15 +82,15 @@ const ReadMeText = styled.div`
 	color: #101820;
 `;
 
-function Descripton() {
+function Description() {
 	return (
 		<div>
-			<HeaderDescripton>
+			<HeaderDescripton data-testid="HeaderDesc">
 				A Workflow Orchestration Platform Designed for Quantum & HPC
 			</HeaderDescripton>
-			<InfoDescripton>
-				Covalent is a Python-based workflow management tool used for creating, scheduling and
-				executing modular code on advanced computing resources over the cloud
+			<InfoDescripton data-testid="InfoDesc">
+				Covalent is a management tool used for creating, scheduling and executing modular code on
+				advanced computing resources over the cloud
 			</InfoDescripton>
 			<LinkContainer>
 				<LinkDescription
@@ -99,13 +99,11 @@ function Descripton() {
 					href="https://github.com/styled-components/styled-components"
 					target="_blank"
 					rel="noopener"
-					primary
 				>
 					<a
 						href="https://github.com/styled-components/styled-components"
 						target="_blank"
 						rel="noreferrer"
-						primary
 					>
 						Watch Video
 					</a>
@@ -115,7 +113,6 @@ function Descripton() {
 						href="https://www.thehindu.com/?utm_source=google&utm_medium=cpc&utm_campaign=September&tpcc=THDGL&gclid=Cj0KCQjwz7uRBhDRARIsAFqjulnXE1yvrTfT1nw91yZaTFkNi-NnHtjqp9dDxDBRcSeu0xGJvXc_BPEaAlTgEALw_wcB"
 						target="_blank"
 						rel="noreferrer"
-						primary
 					>
 						Read the paper
 					</a>
@@ -127,4 +124,4 @@ function Descripton() {
 	);
 }
 
-export default Descripton;
+export default Description;
