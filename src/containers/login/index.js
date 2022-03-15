@@ -119,14 +119,14 @@ function Login() {
 				src="https://agnostiq.ai/wp-content/uploads/2022/01/Hero-img.png"
 			/>
 			<WelcomeTextContainer>
-				<WelcomeText>Welcome</WelcomeText>
+				<WelcomeText data-testid="WelcomeText">Welcome</WelcomeText>
 			</WelcomeTextContainer>
 			<SocialMediaContainer>
-				<GoogleContainer>Login with Google</GoogleContainer>
-				<GitHubContainer>Login with Github</GitHubContainer>
+				<GoogleContainer data-testid="GoogleLogin">Login with Google</GoogleContainer>
+				<GitHubContainer data-testid="GitHubLogin">Login with Github</GitHubContainer>
 			</SocialMediaContainer>
-			<EmailContainer>Login with email</EmailContainer>
-			<RegisterContainer>Register</RegisterContainer>
+			<EmailContainer data-testid="EmailLogin">Login with email</EmailContainer>
+			<RegisterContainer data-testid="Register">Register</RegisterContainer>
 		</Container>
 	);
 }
