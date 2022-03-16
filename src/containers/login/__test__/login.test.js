@@ -52,7 +52,7 @@ describe('GitHubLogin', () => {
 		const GitHubLogin = screen.getByTestId('GitHubLogin');
 		expect(GitHubLogin).toHaveStyle('margin: 16px 0px');
 	});
-	it('shows correct text ', () => {
+	it('shows correct text', () => {
 		render(<Login />);
 		const GitHubLogin = screen.getByTestId('GitHubLogin');
 		expect(GitHubLogin).toHaveTextContent(/Login with Github/i);
@@ -78,7 +78,7 @@ describe('Register', () => {
 		const Register = screen.getByTestId('Register');
 		expect(Register).toHaveStyle('color: #fafafa');
 	});
-	it('shows correct text ', () => {
+	it('shows correct text', () => {
 		render(<Login />);
 		const Register = screen.getByTestId('Register');
 		expect(Register).toHaveTextContent(/Register/i);
