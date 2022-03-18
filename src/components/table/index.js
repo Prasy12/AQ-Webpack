@@ -18,17 +18,11 @@ import Checkbox from '@mui/material/Checkbox';
 import LinearProgress from '@mui/material/LinearProgress';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import EditIcon from '@mui/icons-material/Edit';
+import ArchiveIcon from '@mui/icons-material/Archive';
+import CustomizedMenus from '../menu';
 
-function createData(name, calories, fat, carbs, protein, price) {
-	return {
-		name,
-		calories,
-		fat,
-		carbs,
-		protein,
-		price
-	};
-}
 function ZeroRow(props) {
 	const { header } = props;
 	return (
@@ -45,53 +39,96 @@ ZeroRow.propTypes = {
 
 function Row(props) {
 	const { row } = props;
+	const [open, setOpen] = React.useState(false);
+	const menu = [
+		{
+			name: 'Edit',
+			icon: <EditIcon />
+		},
+		{
+			name: 'Archive',
+			icon: <ArchiveIcon />
+		}
+	];
+
 	return (
-		<TableRow key={row.date} sx={{ '& td': { border: 0 } }}>
-			<TableCell width="100px">
-				<Checkbox color="primary" />
-			</TableCell>
-			<TableCell align="center" width="200px">
-				{row.name}
-			</TableCell>
-			<TableCell align="center" width="200px">
-				<LinearProgress />
-			</TableCell>
-			<TableCell align="center" width="200px">
-				<Stack direction="row" spacing={1}>
-					<Chip label="react" />
-					<Chip label="python" />
-					<Chip label="aws" />
-					<Chip label="rust" />
-				</Stack>
-			</TableCell>
-			<TableCell align="center" width="200px">
-				{row.carbs}
-			</TableCell>
-			<TableCell align="center" width="200px">
-				{row.protein}
-			</TableCell>
-			<TableCell align="center" width="200px">
-				{row.price}
-			</TableCell>
-		</TableRow>
+		<TableBody>
+			{row.map(rowItems => (
+				<TableRow sx={{ '& td': { border: 0 } }}>
+					<TableCell width="200px">
+						<Checkbox color="primary" />
+						<IconButton
+							aria-label="expand row"
+							size="small"
+							onClick={() => setOpenDispatch(!openDispatch)}
+						>
+							{openDispatch ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+						</IconButton>
+					</TableCell>
+					<TableCell width="200px" align="center">
+						{rowItems.title}
+					</TableCell>
+					<TableCell align="center" width="200px">
+						<LinearProgress />
+					</TableCell>
+					<TableCell align="center" width="200px">
+						<Stack direction="row" spacing={1}>
+							<Chip label="react" />
+							<Chip label="python" />
+							<Chip label="aws" />
+							<Chip label="rust" />
+						</Stack>
+					</TableCell>
+					<TableCell width="200px" align="center">
+						{rowItems.runTime}
+					</TableCell>
+					<TableCell width="200px" align="center">
+						{rowItems.startTime}
+					</TableCell>
+					<TableCell width="200px" align="center">
+						{rowItems.lastUpdated}
+					</TableCell>
+					<TableCell width="200px">
+						<CustomizedMenus menu={menu} />
+					</TableCell>
+					{/* {openDispatch && row.dispatch.map((dispatches) => (
+					<Collapse in={openDispatch} timeout="auto" unmountOnExit>
+						{dispatches.map((dispatch) => (
+							<TableRow key={dispatch.title} sx={{ '& td': { border: 0 } }}>
+								<TableCell align="center">
+									{dispatch.title}
+								</TableCell>
+								<TableCell align="center" width="200px">
+					<LinearProgress />
+				</TableCell>
+				<TableCell align="center" width="200px">
+					<Stack direction="row" spacing={1}>
+						<Chip label="react" />
+						<Chip label="python" />
+						<Chip label="aws" />
+						<Chip label="rust" />
+					</Stack>
+				</TableCell>
+								<TableCell align="center">{dispatch.runTime}</TableCell>
+								<TableCell align="center">{dispatch.startTime}</TableCell>
+								<TableCell align="center">{dispatch.lastUpdated}</TableCell>
+							</TableRow>
+						))}
+					</Collapse>
+				))} */}
+				</TableRow>
+			))}
+		</TableBody>
 	);
 }
 
 Row.propTypes = {
-	row: PropTypes.object.isRequired
+	row: PropTypes.array.isRequired
 };
-
-const rows = [
-	createData('Frozen yoghurt', 159, 6.0, 24, 4.0, 3.99),
-	createData('Ice cream sandwich', 237, 9.0, 37, 4.3, 4.99),
-	createData('Eclair', 262, 16.0, 24, 6.0, 3.79),
-	createData('Cupcake', 305, 3.7, 67, 4.3, 2.5),
-	createData('Gingerbread', 356, 16.0, 49, 3.9, 1.5)
-];
-// const rows = [];
 
 export default function CollapsibleTable(props) {
 	const [open, setOpen] = React.useState(false);
+	const [openDispatch, setOpenDispatch] = React.useState(false);
 	const {
 		id,
 		height,
@@ -105,26 +142,38 @@ export default function CollapsibleTable(props) {
 		orderBy,
 		onRequestSort,
 		onSelectAllClick,
-		onChange
+		onChange,
+		projects
 	} = props;
 	const createSortHandler = property => event => {
 		onRequestSort(event, property);
 	};
+
+	const menu = [
+		{
+			name: 'Edit',
+			icon: <EditIcon />
+		},
+		{
+			name: 'Archive',
+			icon: <ArchiveIcon />
+		}
+	];
+
 	return (
 		<Table>
 			<TableHead>
 				{!!header.length && (
 					<TableRow sx={{ '& td': { border: 0 } }}>
-						<TableCell width="100px">
+						<TableCell width="200px">
 							<Checkbox color="primary" onChange={onSelectAllClick} />
 						</TableCell>
 						{header.map(h => (
 							<TableCell
-								scope="row"
 								width="200px"
 								key={h.label}
-								colSpan={h.colSpan || 1}
-								align={h.align || 'left'}
+								// colSpan={h.colSpan || 1}
+								align={h.align || 'center'}
 								sortDirection={orderBy === h.id ? order : false}
 							>
 								<TableSortLabel
@@ -139,23 +188,130 @@ export default function CollapsibleTable(props) {
 								</TableSortLabel>
 							</TableCell>
 						))}
+						<TableCell width="200px">
+							<CustomizedMenus menu={menu} />
+						</TableCell>
 					</TableRow>
 				)}
 			</TableHead>
-			<TableBody>
-				<TableRow sx={{ '& td': { border: 0 } }}>
-					<TableCell colSpan={6}>
-						<Typography>
-							Project Alpha
-							<IconButton aria-label="expand row" size="small" onClick={() => setOpen(!open)}>
-								{' '}
-								{open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-							</IconButton>
-						</Typography>
-					</TableCell>
-				</TableRow>
-				{open && rows && rows.map(row => <Row key={row.name} row={row} open={open} />)}
-			</TableBody>
+			{projects &&
+				projects.map(proj => (
+					<TableBody key={[proj.name]}>
+						<TableRow sx={{ '& td': { border: 0 } }} key={proj.name}>
+							<TableCell colSpan={7}>
+								<Typography>
+									{proj.name ? proj.name : <input style={{ backgroundColor: 'black' }} />}
+									<IconButton aria-label="expand row" size="small" onClick={() => setOpen(!open)}>
+										{open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+									</IconButton>
+								</Typography>
+							</TableCell>
+							<TableCell width="200px">
+								<CustomizedMenus menu={menu} />
+							</TableCell>
+						</TableRow>
+						{open &&
+							proj.dispatch.map(disp => (
+								<TableRow>
+									<TableCell width="200px">
+										<Checkbox color="primary" />
+									</TableCell>
+									<TableCell align="center" width="200px">
+										{disp.title}
+									</TableCell>
+									<TableCell align="center" width="200px">
+										<LinearProgress />
+									</TableCell>
+									<TableCell align="center" width="200px">
+										<Stack direction="row" spacing={1}>
+											<Chip label="react" />
+											<Chip label="python" />
+											<Chip label="aws" />
+											<Chip label="rust" />
+										</Stack>
+									</TableCell>
+									<TableCell align="center" width="200px">
+										{disp.runTime}
+									</TableCell>
+									<TableCell align="center" width="200px">
+										{disp.startTime}
+									</TableCell>
+									<TableCell align="center" width="200px">
+										{disp.lastUpdated}
+									</TableCell>
+									<TableCell width="200px">
+										<CustomizedMenus menu={menu} />
+									</TableCell>
+								</TableRow>
+							))}
+						{open &&
+							proj.experiment.map(row => (
+								<TableRow sx={{ '& td': { border: 0 } }}>
+									<TableCell width="200px">
+										<Checkbox color="primary" />
+										<IconButton
+											aria-label="expand row"
+											size="small"
+											onClick={() => setOpenDispatch(!openDispatch)}
+										>
+											{openDispatch ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+										</IconButton>
+									</TableCell>
+									<TableCell width="200px" align="center">
+										{row.title}
+									</TableCell>
+									<TableCell align="center" width="200px">
+										<LinearProgress />
+									</TableCell>
+									<TableCell align="center" width="200px">
+										<Stack direction="row" spacing={1}>
+											<Chip label="react" />
+											<Chip label="python" />
+											<Chip label="aws" />
+											<Chip label="rust" />
+										</Stack>
+									</TableCell>
+									<TableCell width="200px" align="center">
+										{row.runTime}
+									</TableCell>
+									<TableCell width="200px" align="center">
+										{row.startTime}
+									</TableCell>
+									<TableCell width="200px" align="center">
+										{row.lastUpdated}
+									</TableCell>
+									<TableCell width="200px">
+										<CustomizedMenus menu={menu} />
+									</TableCell>
+									{/* {openDispatch && row.dispatch.map((dispatches) => (
+									<Collapse in={openDispatch} timeout="auto" unmountOnExit>
+										{dispatches.map((dispatch) => (
+											<TableRow key={dispatch.title} sx={{ '& td': { border: 0 } }}>
+												<TableCell align="center">
+													{dispatch.title}
+												</TableCell>
+												<TableCell align="center" width="200px">
+									<LinearProgress />
+								</TableCell>
+								<TableCell align="center" width="200px">
+									<Stack direction="row" spacing={1}>
+										<Chip label="react" />
+										<Chip label="python" />
+										<Chip label="aws" />
+										<Chip label="rust" />
+									</Stack>
+								</TableCell>
+												<TableCell align="center">{dispatch.runTime}</TableCell>
+												<TableCell align="center">{dispatch.startTime}</TableCell>
+												<TableCell align="center">{dispatch.lastUpdated}</TableCell>
+											</TableRow>
+										))}
+									</Collapse>
+								))} */}
+								</TableRow>
+							))}
+					</TableBody>
+				))}
 		</Table>
 	);
 }

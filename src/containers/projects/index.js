@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-import DispatchCard from '../../components/dispatchCard';
-import CollapsibleTable from '../../components/table';
+import IconButton from '@mui/material/IconButton';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import PushPinIcon from '@mui/icons-material/PushPin';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import LinearProgress from '@mui/material/LinearProgress';
 import { DISPATCH_HEADER } from '../../constants/tableHeaderConstants';
+import CollapsibleTable from '../../components/table';
+import DispatchCard from '../../components/dispatchCard';
 
 function Projects() {
 	const [dispatch, setDispatch] = useState([
@@ -49,6 +54,53 @@ function Projects() {
 		console.log('Select All');
 	};
 
+	const projects = [
+		{
+			name: 'Agnostiq',
+			experiment: [
+				{
+					title: 'title',
+					tags: 'tags',
+					startTime: 'startTime',
+					lastUpdated: 'lastUpdated',
+					runTime: 'runTime',
+					dispatches: [
+						{
+							title: 'title',
+							tags: 'tags',
+							startTime: 'startTime',
+							lastUpdated: 'lastUpdated',
+							runTime: 'runTime'
+						},
+						{
+							title: 'title',
+							tags: 'tags',
+							startTime: 'startTime',
+							lastUpdated: 'lastUpdated',
+							runTime: 'runTime'
+						}
+					]
+				}
+			],
+			dispatch: [
+				{
+					title: 'title',
+					tags: 'tags',
+					startTime: 'startTime',
+					lastUpdated: 'lastUpdated',
+					runTime: 'runTime'
+				},
+				{
+					title: 'title',
+					tags: 'tags',
+					startTime: 'startTime',
+					lastUpdated: 'lastUpdated',
+					runTime: 'runTime'
+				}
+			]
+		}
+	];
+
 	return (
 		<>
 			<Grid container rowSpacing={8}>
@@ -62,7 +114,9 @@ function Projects() {
 				))}
 			</Grid>
 			<Grid container>
+				{/* <CustomizedMenus menu={menu} /> */}
 				<CollapsibleTable
+					projects={projects}
 					header={DISPATCH_HEADER}
 					onRequestSort={createSortHandler}
 					onSelectAllClick={onSelectAllClick}
