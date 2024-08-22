@@ -8,7 +8,7 @@ function App() {
 	console.log('ENVs', `${process.env.REACT_APP_ENDPOINT_URL}`);
 	return (
 		<ThemeProvider theme={theme}>
-			<Paper square>
+			<Paper square index='1'>
 				<Projects />
 			</Paper>
 		</ThemeProvider>
